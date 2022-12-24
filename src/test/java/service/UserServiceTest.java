@@ -1,17 +1,26 @@
 package service;
 
+import data.UsersRepository;
 import model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import service.UserService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
+    @InjectMocks
     UserService userService;
+    @Mock
+    UsersRepository usersRepository;
     String firstName;
     String lastName;
     String email;
@@ -20,7 +29,6 @@ public class UserServiceTest {
 
     @BeforeEach
     void init() {
-        userService = new UserServiceImpl();
         firstName = "Volodymyr";
         lastName = "Gumennyi";
         email = "test@test.com";
